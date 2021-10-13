@@ -1,9 +1,10 @@
 import React from 'react'
 import jss from 'jss'
 import plugin from 'jss-plugin-extend'
-import { Footer, Films } from './components'
+import { Footer } from './components'
 import { Label } from './shared/components'
 import { FilmsService } from './shared/services/films.service'
+import { Films } from './pages/films/films'
 
 jss.use(plugin())
 const filmService = new FilmsService()

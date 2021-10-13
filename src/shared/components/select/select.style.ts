@@ -1,21 +1,34 @@
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from 'react-jss'
 
 export const selectStyles = createUseStyles({
+    wrapper: {
+        display: 'inline-block',
+        position: 'relative',
+    },
     select: {
+        position: 'relative',
         appearance: 'none',
         background: 'transparent',
-        backgroundImage: `url("data:image/svg+xml;utf8,<svg fill='%23F65261' height='148' viewBox='0 0 148 148' width='148' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPositionX: '200px',
-        backgroundPositionY: '15px',
+        backgroundColor: '#232323',
         border: 'none',
-        width: '220px',
         fontSize: '22px',
-        padding: '1rem',
+        padding: '8px 24px 8px 8px',
         textTransform: 'uppercase',
         color: 'white',
         cursor: 'pointer',
         userSelect: 'none',
-    }
-});
-
+        opacity: 0.5,
+        zIndex: 2,
+    },
+    marker: {
+        position: 'absolute',
+        top: '50%',
+        right: 0,
+        transform: 'translateY(-50%)',
+        color: '#F65261',
+        fontSize: '24px',
+        userSelect: 'none',
+        cursor: 'pointer',
+        zIndex: 1,
+    },
+})
