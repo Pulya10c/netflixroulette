@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { menuStyles } from './menu.style'
 
 export const Menu: React.FunctionComponent = ({ children }) => {
