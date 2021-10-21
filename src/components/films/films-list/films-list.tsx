@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { FilmModel } from '../../../shared/services/types'
 import { FilmCard } from '../film-card/film-card'
 import { filmsListStyles } from './films-list.style'
@@ -7,12 +8,14 @@ type props = {
     films: FilmModel[]
     onDeleteFilm: (filmId: number) => void
     onUpdateFilm: (filmId: number) => void
+    onSelectFilm: (filmId: number) => void
 }
 
 export const FilmsList: React.FC<props> = ({
     films,
     onDeleteFilm,
     onUpdateFilm,
+    onSelectFilm,
 }) => {
     const classes = filmsListStyles()
     return (
@@ -23,6 +26,7 @@ export const FilmsList: React.FC<props> = ({
                     film={film}
                     onUpdateFilm={onUpdateFilm}
                     onDeleteFilm={onDeleteFilm}
+                    onSelectFilm={onSelectFilm}
                 />
             ))}
         </div>

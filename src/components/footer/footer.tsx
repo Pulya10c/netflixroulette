@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { useFooterStyles } from './footer.style'
 
 export const Footer: React.FunctionComponent = ({ children }) => {

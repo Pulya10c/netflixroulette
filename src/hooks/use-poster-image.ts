@@ -1,4 +1,6 @@
-export const DEFAULT_IMAGE = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+import { useEffect, useState, useCallback } from 'react'
+
+const defaultPosterImage = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
 <desc>Created with Fabric.js 1.7.22</desc>
 <defs>
 </defs>
@@ -13,3 +15,24 @@ export const DEFAULT_IMAGE = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2
 </g>
 </g>
 </svg>`
+
+export const usePosterImage = (posterPath: string): string => {
+    const [posterUrl, setPosterUrl] = useState<string>(null)
+
+    const loadPoster = useCallback(async () => {
+        try {
+            const response = await fetch(posterPath)
+            const imageBlob = await response.blob()
+
+            return URL.createObjectURL(imageBlob)
+        } catch {
+            return defaultPosterImage
+        }
+    }, [posterPath])
+
+    useEffect(() => {
+        loadPoster().then(setPosterUrl)
+    }, [posterPath])
+
+    return posterUrl
+}
