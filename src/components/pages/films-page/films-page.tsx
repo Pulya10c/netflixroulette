@@ -1,20 +1,19 @@
 import React from 'react'
-import { AddFilmForm, DeleteFilmForm, EditFilmForm } from '../../components'
-import { withCondition, withPopup } from '../../hoc'
-import { ErrorBoundary } from '../../shared/components'
-import { FilmsService } from '../../shared/services/films.service'
-import { FilmModel } from '../../shared/services/types'
-import { FilmsContent } from './films-content/films-content'
-import { FilmsSearching } from './films-searching/films-searching'
+import { withCondition, withPopup } from '../../../hoc'
+import { ErrorBoundary } from '../../../shared/components'
+import { FilmsService } from '../../../shared/services/films.service'
+import { FilmModel } from '../../../shared/services/types'
+import { AddFilmForm, DeleteFilmForm, EditFilmForm } from '../../forms'
+
+import { Films } from '../../templates'
 
 const DeleteFilmPopup = withCondition(withPopup(DeleteFilmForm))
 const AddFilmPopup = withCondition(withPopup(AddFilmForm))
 const EditFilmPopup = withCondition(withPopup(EditFilmForm))
 
-const FilmsContentCondition = withCondition(FilmsContent)
-
 type state = {
     films: FilmModel[]
+    selectedFilm: FilmModel
     deletedFilmId: number
     edittedFilmId: number
     isAddPopupShown: boolean
@@ -23,9 +22,10 @@ type state = {
 type props = {
     filmsService: FilmsService
 }
-export class Films extends React.Component<props, state> {
+export class FilmsPage extends React.Component<props, state> {
     state: state = {
         films: [],
+        selectedFilm: null,
         deletedFilmId: null,
         edittedFilmId: null,
         isAddPopupShown: false,
@@ -49,9 +49,14 @@ export class Films extends React.Component<props, state> {
         return sortedFilms
     }
 
+    private findFilmById(filmId: number): FilmModel {
+        return this.state.films.find((film) => film.id === filmId)
+    }
+
     render() {
         const {
             films,
+            selectedFilm,
             deletedFilmId,
             edittedFilmId,
             isAddPopupShown,
@@ -83,19 +88,24 @@ export class Films extends React.Component<props, state> {
                     }
                 />
 
-                <FilmsSearching
-                    onAddFilm={() => this.setState({ isAddPopupShown: true })}
-                />
-
-                <FilmsContentCondition
-                    isShown={!!films.length}
+                <Films
                     films={films}
+                    selectedFilm={selectedFilm}
                     onDeleteFilm={(filmId: number) =>
                         this.setState({ deletedFilmId: filmId })
                     }
                     onUpdateFilm={(filmId) =>
                         this.setState({ edittedFilmId: filmId })
                     }
+                    onSelectFilm={(filmId) =>
+                        this.setState({
+                            selectedFilm: this.findFilmById(filmId),
+                        })
+                    }
+                    onShowSearching={() =>
+                        this.setState({ selectedFilm: null })
+                    }
+                    onAddFilm={console.log}
                     sortedCategory={this.state.sortedCategory}
                     onSetSortedCategory={(category) =>
                         this.setState({

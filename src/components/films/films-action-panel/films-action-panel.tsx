@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Select } from '../../../shared/components'
 import { GENRES, SORTED_CATEGORIES } from '../../../shared/components/const'
 import { FilmModel } from '../../../shared/services/types'

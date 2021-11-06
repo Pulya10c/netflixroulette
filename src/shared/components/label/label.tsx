@@ -1,10 +1,10 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { StupidReactComponent } from '../types'
 import { labelStyles } from './label.style'
+import { AtomReactComponent } from '../../../components/types'
 
-export const Label: StupidReactComponent = ({ className }) => {
+export const Label: AtomReactComponent = ({ className }) => {
     const classes = labelStyles()
 
     return (
