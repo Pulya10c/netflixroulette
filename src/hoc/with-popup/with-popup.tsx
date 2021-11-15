@@ -1,5 +1,5 @@
 import React from 'react'
-import { Popup } from '../../components/popup/popup'
+import { Popup } from '../../components/atoms'
 
 export const withPopup = <T extends object>(
     Component: React.ComponentType<T>

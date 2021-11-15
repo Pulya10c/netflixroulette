@@ -1,2 +1,2 @@
-export * from './footer/footer'
-export * from './forms'
+export * from './pages/films-page/films-page'
+export * from './organisms/footer/footer'
